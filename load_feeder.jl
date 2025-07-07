@@ -1,3 +1,4 @@
+#librerias y importacion de archivos
 using LinearAlgebra
 using Printf
 using MAT
@@ -122,12 +123,6 @@ function load_feeder(j)
 
 end
 
-
-#nombre_ar="FEEDER14.xlsx"
-
-#feeder=load_feeder(nombre_ar)
-
-#display(feeder.z_line)
 
 
 
