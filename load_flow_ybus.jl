@@ -1,4 +1,4 @@
-"""Flujo de carga trifasico utilizando el método de punto fijo directamente """
+"""Three-phase load flow using the fixed-point method directly"""
 
 using LinearAlgebra
 using Printf
