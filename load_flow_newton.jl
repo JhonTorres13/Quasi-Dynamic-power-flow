@@ -7,34 +7,34 @@ include("load_feeder.jl")
 include("select_scenario.jl")
 
 
-tm=566                            #Seleccionar escenario 
+tm=566                            #Select scenario
 
-nombre_ar="FEEDER900.xlsx"        #cargar datos del alimentador
-feeder=load_feeder(nombre_ar);    #cargar datos del excel
+nombre_ar="FEEDER900.xlsx"        #Load feeder data
+feeder=load_feeder(nombre_ar);    #Load data from Excel
 cargas=select_scenario(feeder,tm)
 
 
-@time begin                                                  #contador
+@time begin                                                  #Timer
 
-num_n = feeder.num_n;                                        #numero de nodos
-ybus = feeder.ybus;                                          #Matriz Ybus del sistema
+num_n = feeder.num_n;                                        #Number of nodes
+ybus = feeder.ybus;                                          #Ybus matrix of the system
 B = imag(ybus);
 G = real(ybus); 
-ynn = feeder.ynn;                                            #Matriz ynn del sistema 
-znn= feeder.znn;                                             #matriz Znn del sistema
+ynn = feeder.ynn;                                            #Ynn matrix of the system 
+znn= feeder.znn;                                             #Znn matrix of the system
 yns = feeder.yns;
-n_slack = feeder.n_slack;                                    #nodos Slack fases A, B y C
-n_other = feeder.n_other;                                    #el resto de nodos
-vnn=feeder.vn_initial                                        #voltajes Iniciales
+n_slack = feeder.n_slack;                                    #Slack nodes, phases A, B, and C
+n_other = feeder.n_other;                                    #Other nodes
+vnn=feeder.vn_initial                                        #Initial voltages (non-slack)
 vs=feeder.vs_initial
-p_base=feeder.p_base                                         #Potencia base
-num_e=feeder.num_e                                           #numero de escenarios                                   
-sref = -cargas[n_other,1]                                    #variación de cargas
+p_base=feeder.p_base                                         #Base power
+num_e=feeder.num_e                                           #Number of scenarios                                   
+sref = -cargas[n_other,1]                                    #Load variation
 pref = real(sref);
 qref = imag(sref);
 
 
-#Inicializacion de voltajes
+#Voltage initialization
 v = ones(ComplexF64,3*num_n);
 an = zeros(3*num_n);
 
@@ -43,14 +43,14 @@ an[n_slack] = angle.(vs);
 v[n_slack] = abs.(vs);
 
 
-err = 100;                           #error inicial
-conv = zeros(10,1);                  #error de cada iteracion
+err = 100;                           #Initial error
+conv = zeros(10,1);                  #Error at each iteration
 iter = 1; 
 
 
 num_t = 3*num_n;
 num_r = length(n_other);
-H = zeros(num_t,num_t);                #Definir matrices H, N, J y L
+H = zeros(num_t,num_t);                #Define Jacobian submatrices H, N, J, and L
 N = zeros(num_t,num_t);
 J = zeros(num_t,num_t);
 L = zeros(num_t,num_t);
@@ -60,7 +60,7 @@ while err>1E-9
     global sn = vn.*conj(ybus*vn);
     local p = real(sn);
     local q = imag(sn);
-    for k = 1:num_t                     #construir jacobiano
+    for k = 1:num_t                     #Build Jacobian
         for m = 1:num_t
             if k==m
                 H[k,k] = -B[k,k]*v[k,1]*v[k,1]-q[k,1];            
@@ -80,7 +80,7 @@ while err>1E-9
     local dq = qref-q[n_other];
 
     local Jac = [H[n_other,n_other] N[n_other,n_other] 
-           J[n_other,n_other] L[n_other,n_other]];        #armar jacobiano
+           J[n_other,n_other] L[n_other,n_other]];        #Assemble Jacobian
  
     local delta=[dp
            dq]
@@ -111,5 +111,4 @@ end
 
 println(iteraciones)
 println(p_loss)
-
 
