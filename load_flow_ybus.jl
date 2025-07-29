@@ -1,4 +1,9 @@
-"""Three-phase load flow using the fixed-point method directly"""
+#|--------------------------------------------|
+#| Power flow in power distribution networks  |
+#| Load flow using fixed-point algorithm      |
+#| By:  Jhon Torres                           |
+#|      jhon.torres1@utp.edu.co               |
+#|--------------------------------------------|
 
 using LinearAlgebra
 using Printf
