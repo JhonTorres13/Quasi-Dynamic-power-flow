@@ -1,5 +1,9 @@
-"""Three-phase load flow using the forward-backward sweep method for unbalanced distribution systems. The test system has 906 nodes."""
-
+#|------------------------------------------------|
+#| Power flow in power distribution networks      |
+#| Load flow backwar\forward sweep algorithm      |
+#| By:  Jhon Torres                               |
+#|      jhon.torres1@utp.edu.co                   |
+#|------------------------------------------------|
 
 # Libraries and file import
 using LinearAlgebra
