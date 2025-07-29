@@ -1,5 +1,12 @@
+#|---------------------------------------------------------------|
+#| Power flow in power distribution networks                     |
+#| Load flow using  complex linear with  method fixed point      |
+#| By:  Jhon Torres                                              |
+#|      jhon.torres1@utp.edu.co                                  |
+#|---------------------------------------------------------------|
 
-"""Load flow with the three-phase test system of 906 nodes and 2715 electrical nodes
+
+"""analysis of three-phase load flow on a 906-node European distribution feeder using complex linearization with the fixed-point method.
 """
 #libraries and file import
 using LinearAlgebra
