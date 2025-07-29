@@ -1,3 +1,12 @@
+#|-----------------------------------------------|
+#| Power flow in power distribution networks     |
+#| Load flow using Newton's method               |
+#| By:  Jhon Torres                              |
+#|      jhon.torres1@utp.edu.co                  |
+#|-----------------------------------------------|
+
+"""Analysis of three-phase load flow on a 906-node European distribution feeder using Newton's method """
+
 using LinearAlgebra
 using Printf
 using MAT
