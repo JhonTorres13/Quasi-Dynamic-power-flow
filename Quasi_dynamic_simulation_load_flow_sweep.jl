@@ -119,10 +119,6 @@ display(s_sub[1:5, 3])
 
 
 
-plot(s_sub[1:end, 1], s_sub[1:end, 2])
-plot!(s_sub[1:end, 1], s_sub[1:end, 3])
-
-
 
 
 
