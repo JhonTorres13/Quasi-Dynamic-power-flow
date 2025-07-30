@@ -12,7 +12,6 @@
 # Libraries
 using LinearAlgebra 
 using Printf
-using MAT
 using Profile
 
 # Include custom functions
