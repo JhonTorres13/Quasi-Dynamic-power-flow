@@ -12,7 +12,6 @@
 # Libraries and file imports
 using LinearAlgebra
 using Printf
-using MAT
 using LinearAlgebra
 using Profile
 using Plots
