@@ -23,7 +23,6 @@ based on the load definitions and a given scenario index 'tm'.
 
 using LinearAlgebra
 using Printf
-using MAT
 using LinearAlgebra
 using Profile
 
